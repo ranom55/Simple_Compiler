@@ -81,47 +81,18 @@ char stackTop(stackPtr stack) {
 }
 int precedence(char operator1, char operator2) {
 
-    int grupo;
-    int grupo2;
+    int grupo = 0;
 
     if (operator1 == '/' || operator1 == '*' || operator1 == '%') {
 
-        grupo = 2;
+        ++grupo;
     }
     if (operator2 == '/' || operator2 == '*' || operator2 == '%') {
 
-        grupo2 = 2;
+        --grupo;
     }
-    if (operator1 == '+' || operator1 == '-') {
+    return grupo;
 
-        grupo = 1;
-    }
-    if (operator2 == '+' || operator2 == '-') {
-
-        grupo2 = 1;
-    }
-    if (operator1 == '^') {
-
-        grupo = 3;
-    }
-    if (operator2 == '^') {
-
-        grupo2 = 3;
-    }
-    if (grupo == grupo2) {
-
-        return 0;
-    }
-    if (grupo > grupo2) {
-
-        return 1;
-    }
-    if (grupo < grupo2) {
-
-        return -1;
-    }
-
-}
 void convertToPostfix(char infix[], char postfix[])
 {
     stackPtr stack = NULL;
